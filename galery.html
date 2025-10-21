@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Kelas TKJ</title>
+<link rel="stylesheet" href="gayautama.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== INLINE GALERI CSS ===== */
+.galeri-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 0 20px;
+}
+.galeri-item {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.galeri-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+.galeri-item:hover img {
+    transform: scale(1.1);
+}
+.galeri-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+/* POPUP LIGHTBOX */
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+}
+.zoom-overlay.active { display: flex; }
+.zoomed-image {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
+.close-zoom {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.close-zoom:hover { color: #ff5252; }
+</style>
+</head>
+<body>
+
+<header class="atas">
+    <a href="#home"><img src="image/logo.png" alt="manok"></a>
+    <h1>Galeri Kelas XI TKJ 1</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+            <li><a href="profil.html">Profil Kelas</a></li>
+            <li><a href="galery.html" class="active">Galeri</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="konten">
+    <!-- <section id="home">
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit...</h1>
+    </section>
+
+    <section id="tentang">
+        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</h1>
+    </section> -->
+
+    <!-- GALERI -->
+    <section id="galeri">
+        <h2 style="text-align:center; color:#0d47a1; margin-bottom:30px;">Galeri Kelas XI TKJ 1</h2>
+        <div class="galeri-container">
+            <div class="galeri-item"><img src="image/galeri5.jpg" alt="Foto 1"></div>
+            <div class="galeri-item"><img src="image/galeri4.jpg" alt="Foto 2"></div>
+            <div class="galeri-item"><img src="image/galeri3.jpg" alt="Foto 3"></div>
+            <div class="galeri-item"><img src="image/galeri2.jpg" alt="Foto 4"></div>
+            <div class="galeri-item"><img src="image/galeri1.jpg" alt="Foto 5"></div>
+            <div class="galeri-item"><img src="image/front1.jpg" alt="Foto 6"></div>
+            <div class="galeri-item"><img src="image/front2.jpg" alt="Foto 7"></div>
+            <div class="galeri-item"><img src="image/front3.jpg" alt="Foto 8"></div>
+            <div class="galeri-item"><img src="image/front4.jpg" alt="Foto 9"></div>
+            <div class="galeri-item"><img src="image/front5.jpg" alt="Foto 10"></div>
+        </div>
+
+        <!-- Popup Overlay -->
+        <div id="zoomOverlay" class="zoom-overlay">
+            <span class="close-zoom">&times;</span>
+            <img class="zoomed-image" src="" alt="zoomed">
+        </div>
+
+        <script>
+        // ===== POPUP GALERI INLINE JS =====
+        document.addEventListener("DOMContentLoaded", () => {
+            const galeriImages = document.querySelectorAll('.galeri-item img');
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomedImage = zoomOverlay.querySelector('.zoomed-image');
+            const closeZoom = zoomOverlay.querySelector('.close-zoom');
+
+            galeriImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    zoomedImage.src = img.src;
+                    zoomedImage.alt = img.alt;
+                    zoomOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeZoom.addEventListener('click', () => {
+                zoomOverlay.classList.remove('active');
+                zoomedImage.src = '';
+                zoomedImage.alt = '';
+                document.body.style.overflow = '';
+            });
+
+            zoomOverlay.addEventListener('click', e => {
+                if (e.target === zoomOverlay) {
+                    zoomOverlay.classList.remove('active');
+                    zoomedImage.src = '';
+                    zoomedImage.alt = '';
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        </script>
+    </section>
+</div>
+
+<footer style="margin-top:26px;text-align:center;color:var(--muted);font-size:13px">
+    &copy; Kelas XI TKJ 1 - Web Ini Dilindungi Oleh Hak Cipta.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

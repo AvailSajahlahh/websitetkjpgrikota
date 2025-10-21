@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XI TKJ 1 CLASS</title>
+  <link rel="stylesheet" href="gayautama.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="atas">
+    <a href="#home">
+      <img src="image/logo.png" alt="logo kelas" />
+    </a>
+    <h1>Kelas XI TKJ 1</h1>
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+        <li><a href="profil.html">Profil Kelas</a></li>
+        <li><a href="galery.html">Galeri</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="kontenutama">
+    <section id="home">
+      <h1>Selamat datang di website resmi Kelas XI TKJ 1 SMK PGRI Kota Mojokerto</h1>
+
+      <div class="slider">
+        <div class="slides">
+          <img src="image/front1.jpg" alt="foto bareng" class="foto" />
+          <img src="image/front2.jpg" alt="foto bareng" class="foto" />
+          <img src="image/front3.jpg" alt="foto bareng" class="foto" />
+          <img src="image/front4.jpg" alt="foto bareng" class="foto" />
+          <img src="image/front5.jpg" alt="foto bareng" class="foto" />
+        </div>
+
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="masukan-section">
+      <textarea id="masukan" placeholder="Ketik masukan Anda di sini"></textarea><br />
+      <button id="kirimBtn" type="button">Kirim</button>
+
+      <div id="listMasukan">
+        <h3>Daftar Masukan:</h3>
+        <ul id="masukanContainer"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top:26px;text-align:center;color:var(--muted);font-size:13px">
+    &copy; Kelas XI TKJ 1 - Web Ini Dilindungi Oleh Hak Cipta.
+  </footer>
+
+  <!-- Popup zoom overlay -->
+  <div id="zoomOverlay" class="zoom-overlay">
+    <span class="close-zoom">&times;</span>
+    <img class="zoomed-image" src="" alt="zoomed" />
+  </div>
+
+  <script src="system/storage.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

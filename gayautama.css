@@ -1,0 +1,626 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+html, body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  transition: all 0.5s;
+}
+
+h1, h2, h3, nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Header tetap di atas saat scroll */
+header.atas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+}
+
+/* Logo */
+header.atas img {
+  width: 230px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+/* Judul */
+header.atas h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+/* Navigasi */
+header.atas nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+header.atas nav ul li a {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+header.atas nav ul li a:hover {
+  color: #ff9800;
+  border-bottom: 2px solid #ff9800;
+}
+
+/* Jarak agar konten tidak ketiban header */
+.konten {
+  margin-top: 250px;
+  padding: 20px;
+}
+
+/* Gaya teks konten */
+.konten h1 {
+  margin-bottom: 30px;
+  color: #0d47a1;
+  font-size: 24px;
+}
+
+.konten h4 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.konten h3 {
+  color: #2196F3;
+}
+
+nav ul li a.active {
+  color: #ff9800;
+  border-bottom: 2px solid #ff9800;
+  transition: all 0.3s;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Tombol kirim */
+#kirimBtn {
+  background: linear-gradient(135deg, #2196F3, #0D47A1);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+#kirimBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  max-width: 350px;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #2196F3;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  resize: none;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
+}
+
+textarea::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* ==============================
+   Slider & Zoom Effect
+   ============================== */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 480px;       /* lebih kecil biar proporsional */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 280px;          /* ukuran slide kecil */
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: zoom-in;
+  transition: transform 0.4s ease;
+}
+
+/* Efek zoom saat diklik */
+.slides img.active {
+  transform: scale(1.8);
+  cursor: zoom-out;
+  z-index: 10;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+/* Tombol next & prev */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* ==============================
+   Fullscreen Zoom Overlay
+   ============================== */
+.image-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.image-overlay.active {
+  display: flex;
+}
+
+.image-overlay img {
+  max-width: 95%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+  object-fit: contain;
+}
+
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 5px 15px;
+  transition: background 0.3s;
+}
+
+.close-btn:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+/* ==============================
+   Daftar Masukan (Box Style)
+   ============================== */
+#listMasukan {
+  max-width: 400px;
+  margin: 25px auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 20px 25px;
+  text-align: left;
+  transition: 0.3s;
+}
+
+#listMasukan:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+#listMasukan h3 {
+  text-align: center;
+  color: #0D47A1;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+#masukanContainer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#masukanContainer li {
+  background: #f0f7ff;
+  border-left: 4px solid #2196F3;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  word-wrap: break-word;
+  color: #333;
+  font-size: 14px;
+}
+
+/* ==============================
+   Halaman Tentang
+   ============================== */
+.konten.tentang {
+  max-width: 800px;
+  margin: 100px auto;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.konten.tentang h2 {
+  text-align: center;
+  color: #0d47a1;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+.konten.tentang h3 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #2196F3;
+  font-size: 20px;
+}
+
+.konten.tentang p {
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.konten.tentang ul {
+  list-style: disc;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+
+.konten.tentang li {
+  margin-bottom: 6px;
+}
+
+.konten.tentang b {
+  color: #0D47A1;
+}
+
+/* ==============================
+   Popup Image Fullscreen
+   ============================== */
+.image-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-popup.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.image-popup img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.image-popup .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s;
+  background: transparent;
+}
+
+.image-popup .close-btn:hover {
+  color: #ff5252;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.zoom-overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.zoom-overlay.active {
+  display: flex;
+}
+
+.zoomed-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-zoom {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===============================
+   STYLE HALAMAN KONTAK (FINAL)
+=================================*/
+.konten.kontak {
+  max-width: 650px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  text-align: left;
+}
+
+.konten.kontak h2 {
+  text-align: center;
+  color: #0d47a1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.konten.kontak form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.konten.kontak label {
+  font-weight: 600;
+  color: #222;
+  font-size: 15px;
+}
+
+/* Input dan Textarea */
+.konten.kontak input,
+.konten.kontak textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #2196f3;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.konten.kontak input:focus,
+.konten.kontak textarea:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 8px rgba(33, 150, 243, 0.4);
+}
+
+.konten.kontak textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.konten.kontak input::placeholder,
+.konten.kontak textarea::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* Tombol Kirim */
+.konten.kontak button#btnKirim {
+  display: block;
+  width: 150px;
+  margin: 20px auto 0;
+  padding: 10px 0;
+  background: linear-gradient(135deg, #2196f3, #0d47a1);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transition: transform 0.15s, opacity 0.25s, box-shadow 0.15s;
+}
+
+.konten.kontak button#btnKirim:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+}
+
+/* Informasi kontak tambahan */
+.infoKontak {
+  margin-top: 35px;
+  border-top: 1px solid #ddd;
+  padding-top: 25px;
+  font-size: 15px;
+  color: #333;
+}
+
+.infoKontak p {
+  margin-bottom: 10px;
+}
+
+.infoKontak a {
+  color: #2196f3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.infoKontak a:hover {
+  text-decoration: underline;
+}
+
+/* ===== STYLE PROFIL KELAS ===== */
+.profil-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 40px 20px;
+}
+
+.profil-card {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profil-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.profil-card h2, .profil-card h3 {
+    text-align: center;
+    color: var(--primary, #007bff);
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profil-card p {
+    text-align: justify;
+    color: #333;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.profil-card ul {
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.profil-card ul li {
+    list-style-type: disc;
+    margin-bottom: 8px;
+}
+
+.profil-card ul li strong {
+    color: #007bff;
+}
+
+/* =========== */
+/* STYLE UTAMA */
+/* =========== */
+.kontenutama {
+  max-width: 900px;
+  margin: 250px auto 80px auto;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 40px 35px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Gaya teks konten */
+.kontenutama h1 {
+  margin-bottom: 30px;
+  color: #0d47a1;
+  font-size: 24px;
+}
+
+.kontenutama h4 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.kontenutama h3 {
+  color: #2196F3;
+}
