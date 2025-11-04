@@ -28,15 +28,18 @@
         <h2>Hubungi Kami</h2>
         <p>Jika ada pertanyaan, saran, atau kerja sama, silakan isi formulir di bawah ini.</p>
 
-        <form id="formKontak">
+        <form id="formKontak" action="https://formsubmit.co/workshopgreedy@gmail.com" method="POST">
+            <!-- opsional: biar ga muncul captcha dan redirect ke halaman sukses -->
+            <input type="hidden" name="_captcha" value="false">
+
             <label>Nama</label>
-            <input type="text" id="nama" placeholder="Masukkan nama anda" required>
+            <input type="text" id="nama" name="nama" placeholder="Masukkan nama anda" required>
 
             <label>Email</label>
-            <input type="email" id="email" placeholder="Masukkan email anda" required>
+            <input type="email" id="email" name="email" placeholder="Masukkan email anda" required>
 
             <label>Pesan</label>
-            <textarea id="pesan" placeholder="Tulis pesan anda..." required></textarea>
+            <textarea id="pesan" name="pesan" placeholder="Tulis pesan anda..." required></textarea>
 
             <button type="submit" id="btnKirim">Kirim</button>
         </form>
@@ -51,9 +54,9 @@
     </div>
 
     <footer style="margin-top:26px;text-align:center;color:var(--muted);font-size:13px">
-    &copy; Kelas XI TKJ 1 - Web Ini Dilindungi Oleh Hak Cipta.
-  </footer>
+        &copy; Kelas XI TKJ 1 - Web Ini Dilindungi Oleh Hak Cipta.
+    </footer>
 
-    <script src="system/kontakscript.js"></script>
+    <!-- <script src="system/kontakscript.js"></script> -->
 </body>
 </html>
